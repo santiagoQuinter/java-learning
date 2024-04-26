@@ -1,0 +1,37 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+	testImplementation 'com.tngtech.archunit:archunit:1.2.1'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.reactivecommons.utils:object-mapper:0.1.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    //implementamos el entry point que acabamos de realizar. el api Rest -- el plugin lo hace autom?ticamente
+    //Le estamos diciendo al proyecto que generar la aplicaci?n que tome el api Rest
+	implementation project( ':api-rest')
+    implementation project(':model')
+    implementation project(':usecase')
+    implementation project(':mongo-repository')
+
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+
+}
+
+tasks.register('explodedJar', Copy) {
+    with jar
+    into layout.buildDirectory.dir("exploded")
+}
+
+jar {
+    // To disable the *-plain.jar
+    enabled = false
+}
+
+bootJar {
+    // Sets output jar name
+    archiveFileName = "${project.getParent().getName()}.${archiveExtension.get()}"
+}
