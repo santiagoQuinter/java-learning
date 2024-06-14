@@ -36,7 +36,14 @@ public class ApiRest {
 
     @GetMapping(path = "/accounts")
     public ResponseEntity<List<Account>> listAccount() {
-        return new ResponseEntity<List<Account>>(accountUseCase.getAllAccount(), new HttpHeaders(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<List<Account>>(accountUseCase.getAllAccount(), new HttpHeaders(), HttpStatus.OK);
+        }catch (Exception e){
+            System.out.println("--------------------------------error-----------------------"+ e);
+            return new ResponseEntity<List<Account>>(accountUseCase.getAllAccount(), new HttpHeaders(), HttpStatus.OK);
+        }
+
+
     }
 
     @GetMapping(path = "/account/{id}")

@@ -24,6 +24,7 @@ public class MongoDBConfig {
     @Value("${mongoConfig.connectionString}")
     private String dbConnectionString;
 
+        /*
     @Bean
     public MongoDatabaseFactory mongoDatabaseFactory(){
          ConnectionString connectionString = new ConnectionString(dbConnectionString);
@@ -34,10 +35,19 @@ public class MongoDBConfig {
          return new SimpleMongoClientDatabaseFactory(MongoClients.create(settings), dbName);
 
         //validar clases deprecadas
-        /*
+
         MongoClientURI uri = new MongoClientURI(dbConnectionString);
         MongoClient mongoClient = new MongoClient(uri);
-        return new SimpleMongoFactory(mongoClient, this.dbName);   */
+        return new SimpleMongoFactory(mongoClient, this.dbName);
+    } */
+
+    @Bean
+    public MongoDatabaseFactory mongoDatabaseFactory() {
+        ConnectionString connectionString = new ConnectionString(dbConnectionString);
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+        return new SimpleMongoClientDatabaseFactory(MongoClients.create(settings), dbName);
     }
 
     @Bean

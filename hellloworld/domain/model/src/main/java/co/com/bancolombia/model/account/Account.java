@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Account {
-    private int accountNumber;
-    private int accountType;
+    public int accountNumber;
+    public int accountType;
 }

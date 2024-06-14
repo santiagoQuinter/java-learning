@@ -12,7 +12,7 @@ import java.util.List;
 
 //Todo ¿Qué es un adaptador?
 @Repository
-public class MongoRepositoryAdapter extends AdapterOperations<Account/* change for domain model */, AccountDTO/* change for adapter model */, String, MongoDBRepository> implements AccountRepository
+    public class MongoRepositoryAdapter extends AdapterOperations<Account/* change for domain model */, AccountDTO/* change for adapter model */, String, MongoDBRepository> implements AccountRepository
 // implements ModelRepository from domain
 {
 
